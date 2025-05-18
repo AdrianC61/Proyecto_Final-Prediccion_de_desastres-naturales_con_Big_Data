@@ -12,7 +12,6 @@ Repositorio
  ┣ Incendios
  ┃ ┣ incendios_completo.csv
  ┃ ┣ modelo_prediccion_magn_incendio.pkl
- ┃ ┗ Modelo_Incendios.ipynb
  ┣ Seísmos
  ┃ ┣ Modelo_Terremotos.ipynb
  ┃ ┣ cuadrante_nombres.json
