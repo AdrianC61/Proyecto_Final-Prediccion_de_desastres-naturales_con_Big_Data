@@ -1,99 +1,93 @@
+# Predicción de Desastres Naturales en España
 
-# Sistema Predictivo de Desastres Naturales
-
-Este repositorio contiene el trabajo final del proyecto que desarrolla un sistema de predicción de eventos naturales como **incendios forestales**, **terremotos** y **tsunamis** usando modelos de Machine Learning.
+Este proyecto permite simular y visualizar predicciones de **incendios forestales** y **terremotos** en la Península Ibérica mediante modelos de machine learning y mapas interactivos.
 
 ---
 
-## Estructura del repositorio
+## Estructura del Proyecto
 
 ```
-Repositorio
- ┣ Incendios
- ┃ ┣ incendios_completo.csv
- ┃ ┣ modelo_prediccion_magn_incendio.pkl
- ┣ Seísmos
- ┃ ┣ Modelo_Terremotos.ipynb
- ┃ ┣ cuadrante_nombres.json
- ┃ ┣ df_terremotos.csv
- ┃ ┣ modelo_magnitud.pkl
- ┃ ┗ modelo_tsunami.pkl
-```
+
+PrediccionDesastres/
+│
+├── main\_app.py                     # Menú principal para elegir entre seísmos e incendios
+├── requirements.txt
+├── README.md
+│
+├── Incendios/
+│   ├── app.py
+│   ├── modelo\_ocurrencia\_incendios.pkl
+│   ├── modelo\_prediccion\_extension\_incendio.pkl
+│   └── MUNICIPIOS.csv
+│
+├── Seismos/
+│   ├── app.py
+│   ├── modelo\_magnitud.pkl
+│   ├── modelo\_tsunami.pkl
+│   ├── cuadrante\_nombres.json
+│   ├── df\_terremotos.csv
+│   └── modelos\_frecuencia/       # Contiene un .pkl por cada cuadrante (ej: modelo\_frecuencia\_36\_-5.pkl)
+
+````
 
 ---
 
-## Formato de los archivos CSV y JSON
+## Cómo ejecutar la aplicación
 
-### `incendios_completo.csv`
+1. Asegúrate de tener Python 3.8 o superior.
+2. Instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+````
 
-Contiene los datos históricos de incendios forestales, combinando características meteorológicas y operativas:
+3. Ejecuta la app principal:
 
-| Columna            | Descripción                        |
-| ------------------ | ---------------------------------- |
-| superficie         | Hectáreas afectadas                |
-| fecha              | Fecha del incendio (YYYY-MM-DD)    |
-| lat / lng          | Coordenadas del incendio           |
-| idcomunidad        | ID de comunidad autónoma           |
-| idprovincia        | ID de la provincia                 |
-| idmunicipio        | ID del municipio                   |
-| municipio          | Nombre del municipio               |
-| causa              | Origen del incendio                |
-| temp / tmin / tmax | Temperatura media, mínima y máxima |
-| prcp               | Precipitaciones (mm)               |
-| wspd               | Velocidad del viento (km/h)        |
-| pres               | Presión atmosférica (hPa)          |
-| hum                | Humedad relativa (%)               |
-| gastos / perdidas  | Costes estimados del incendio      |
-| codigo\_ine        | Código INE del municipio           |
----
-
-### `df_terremotos.csv`
-
-Base de datos de eventos sísmicos desde 1900, con columnas para análisis espacial y temporal:
-
-| Columna               | Descripción                                   |
-| --------------------- | --------------------------------------------- |
-| Lugar                 | Localización del epicentro                    |
-| Magnitud              | Magnitud del terremoto (escala de momento)    |
-| Profundidad\_km       | Profundidad en kilómetros                     |
-| Latitud / Longitud    | Coordenadas geográficas                       |
-| Alerta                | Nivel de alerta (0 a 3)                       |
-| Tsunami               | Indicador binario de tsunami (0 = no, 1 = sí) |
-| Anio / Mes / Dia      | Fecha del evento desglosada                   |
-| Hora                  | Hora del evento (0–23)                        |
-| lat\_grid / lon\_grid | Cuadrante 1x1 grado de agrupación geográfica  |
-| cuadrante             | ID del cuadrante en formato 'lat,lon'         |
-| Fecha                 | Fecha completa del evento (YYYY-MM-DD)        |
+   ```bash
+   streamlit run main_app.py
+   ```
 
 ---
 
-### `cuadrante_nombres.json`
+## Funcionalidades
 
-Diccionario que asocia coordenadas (cuadrantes geográficos) con nombres de zonas sismológicas aproximadas:
+### Incendios
 
-```json
-{
-  "37,-7": "Andalucía",
-  "36,-3": "Mar de Alborán",
-  "41,2":  "Barcelona",
-  ...
-}
-```
+* Predicción de ocurrencia de incendios por municipio.
+* Estimación de superficie afectada.
+* Clasificación de incendios catastróficos (≥ 500 ha).
+* Mapa interactivo y gráficos resumen.
 
-Cada clave representa un cuadrante 1x1 en formato `"latitud,longitud"` y su valor es el nombre interpretativo de la zona.
+### Terremotos
+
+* Predicción mensual de número de terremotos por zona sísmica.
+* Estimación de magnitud promedio y detección de tsunamis.
+* Visualización en mapa y gráficos descargables.
+* Los modelos de predicción por cuadrante están en `Seismos/modelos_frecuencia/`.
 
 ---
 
 ## Requisitos
 
-- Python 3.11+
-- Bibliotecas:
-  - `pandas`, `numpy`, `matplotlib`, `seaborn`
-  - `scikit-learn`, `imbalanced-learn`
-  - `joblib`, `statsmodels`
+* Python ≥ 3.8
+* Streamlit
+* Pandas
+* NumPy
+* scikit-learn
+* Folium
+* Plotly
+* Statsmodels
+* joblib
 
 ---
 
-## Contacto
+## Notas importantes
+
+* Los modelos `.pkl` han sido previamente entrenados.
+* Las predicciones son simulaciones aproximadas basadas en datos históricos.
+* Todos los datos geográficos se limitan a la Península Ibérica.
+
+---
+
+## Autor
 
 Proyecto realizado por Adrián Casto Ruiz (2025).
