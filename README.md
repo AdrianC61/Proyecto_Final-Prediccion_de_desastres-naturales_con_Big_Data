@@ -17,7 +17,8 @@ PrediccionDesastres/
 ├── Incendios/
 │   ├── app.py
 │   ├── modelo\_ocurrencia\_incendios.pkl
-│   ├── modelo\_prediccion\_extension\_incendio.pkl
+│   ├── Generador\_modeloprediccion\_extension\_incendio.ipynb
+│   ├── incendios\_completado.csv
 │   └── MUNICIPIOS.csv
 │
 ├── Seismos/
@@ -31,6 +32,20 @@ PrediccionDesastres/
 ````
 
 ---
+
+## Preparación
+Debido a las restricciones de tamaño de archivo en GitHub, el modelo modelo_prediccion_extension_incendio.pkl no se incluye directamente en el repositorio.
+Para generarlo localmente, sigue estos pasos:
+
+1. Abre el notebook Generador_modeloprediccion_extension_incendio.ipynb.
+
+2. Ejecuta todas las celdas del notebook.
+
+Se generará automáticamente el archivo:
+```bash
+   modelo_prediccion_extension_incendio.pkl
+````
+
 
 ## Cómo ejecutar la aplicación
 
