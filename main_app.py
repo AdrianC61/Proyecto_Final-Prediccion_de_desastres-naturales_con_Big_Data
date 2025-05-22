@@ -20,9 +20,3 @@ if opcion == "🌍 Terremotos y Tsunamis":
 elif opcion == "🔥 Incendios Forestales":
     import Incendios.app as incendios_app
     incendios_app.main()
-
-def abrir_navegador():
-    time.sleep(1)  # Espera para que Streamlit arranque
-    webbrowser.open("http://localhost:8501")
-
-threading.Thread(target=abrir_navegador).start()
